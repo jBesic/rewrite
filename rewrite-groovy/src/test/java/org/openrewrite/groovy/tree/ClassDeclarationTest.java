@@ -288,4 +288,27 @@ class ClassDeclarationTest implements RewriteTest {
           )
         );
     }
+
+    @Test
+    @Issue("https://github.com/openrewrite/rewrite/issues/4055")
+    void groovyTransform() {
+        rewriteRun(
+          groovy(
+            """
+              package com.example.demo
+              
+              import groovy.transform.ToString
+              
+              @ToString(includeNames = true)
+              class Category {
+                  String f1
+                  String f2
+                  String f3
+                  String f4
+                  String f5
+              }
+              """
+          )
+        );
+    }
 }
